@@ -39,12 +39,14 @@ def estimator(data):
     if impact['severeCasesByRequestedTime'] <= available:
         impact['hospitalBedsByRequestedTime'] = available
     else:
-        impact['hospitalBedsByRequestedTime'] -= available
+        impact['hospitalBedsByRequestedTime'] = available - \
+            impact['severeCasesByRequestedTime']
 
     if severeImpact['severeCasesByRequestedTime'] <= available:
         severeImpact['hospitalBedsByRequestedTime'] = available
     else:
-        severeImpact['hospitalBedsByRequestedTime'] -= available
+        severeImpact['hospitalBedsByRequestedTime'] = available - \
+            severeImpact['severeCasesByRequestedTime']
 
     # estimate severe cases that would need ICU care
     # This is expected to be 5% of infectionsByRequestedTime
