@@ -24,8 +24,8 @@ def estimator(data):
 
     factor = 2 ** (num_of_days / 3)
 
-    impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * factor
-    severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * factor
+    impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * 1024
+    severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * 1024
 
     # estimate number of severe positve cases
     # assume that 15% of projected cases will be severe
