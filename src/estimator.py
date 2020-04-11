@@ -68,7 +68,7 @@ def estimator(data):
         severeImpact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days
 
     # construct output object
-    result = {data: data, impact: impact, severeImpact: severeImpact}
+    result = {'data': data, 'impact': impact, 'severeImpact': severeImpact}
 
     # return output
     return result
