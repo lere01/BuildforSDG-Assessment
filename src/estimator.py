@@ -8,6 +8,7 @@ def estimator(data):
     # retrieve important info from input data
     reported = data['reportedCases']
 
+    ######################  CHALLENGE ONE   ###########################
     # estimate currently infected
     impact['currentlyInfected'] = reported * 10
     severeImpact['currentlyInfected'] = reported * 50
@@ -34,7 +35,10 @@ def estimator(data):
     # assume that 15% of projected cases will be severe
     impact['severeCasesByRequestedTime'] = impact['infectionsByRequestedTime'] * 0.15
     severeImpact['severeCasesByRequestedTime'] = severeImpact['infectionsByRequestedTime'] * 0.15
+    ##################################################################################################
 
+
+    ############################    CHALLENGE TWO   ##############################################
     # estimate available number of hospital beds for severe cases
     # expect that maximum of 35% of total bede spaces will be available
     available = math.ceil(data['totalHospitalBeds'] * 0.35)
@@ -51,15 +55,19 @@ def estimator(data):
         severeImpact['hospitalBedsByRequestedTime'] = available - \
             severeImpact['severeCasesByRequestedTime']
 
+    ##########################################################################################
+
+
+    ############################    CHALLENGE THREE  ###########################################
     # estimate severe cases that would need ICU care
     # This is expected to be 5% of infectionsByRequestedTime
-    impact['casesForICUByRequestedTime'] = impact['infectionsByRequestedTime'] * 0.05
-    severeImpact['casesForICUByRequestedTime'] = severeImpact['infectionsByRequestedTime'] * 0.05
+    impact['casesForICUByRequestedTime'] = math.floor(impact['infectionsByRequestedTime'] * 0.05)
+    severeImpact['casesForICUByRequestedTime'] = math.floor(severeImpact['infectionsByRequestedTime'] * 0.05)
 
     # estimate number of positive cases to require ventilators
     # This is expected to be 2% of infectionsByRequestedTime
-    impact['casesForVentilatorsByRequestedTime'] = impact['infectionsByRequestedTime'] * 0.02
-    severeImpact['casesForVentilatorsByRequestedTime'] = severeImpact['infectionsByRequestedTime'] * 0.02
+    impact['casesForVentilatorsByRequestedTime'] = math.floor(impact['infectionsByRequestedTime'] * 0.02)
+    severeImpact['casesForVentilatorsByRequestedTime'] = math.floor(severeImpact['infectionsByRequestedTime'] * 0.02)
 
     # estimate economic impact to the region based on number infections by requested time
     ave_income = data['region']['avgDailyIncomeInUSD']
@@ -69,6 +77,7 @@ def estimator(data):
         impact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days
     severeImpact['dollarsInFlight'] = (
         severeImpact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days
+    ##########################################################################################
 
     # construct output object
     result = {'data': data, 'impact': impact, 'severeImpact': severeImpact}
