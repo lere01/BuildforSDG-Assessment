@@ -37,7 +37,7 @@ def estimator(data):
 
     # estimate available number of hospital beds for severe cases
     # expect that maximum of 35% of total bede spaces will be available
-    available = math.floor(data['totalHospitalBeds'] * 0.35)
+    available = math.ceil(data['totalHospitalBeds'] * 0.35)
 
     if impact['severeCasesByRequestedTime'] <= available:
         impact['hospitalBedsByRequestedTime'] = available
