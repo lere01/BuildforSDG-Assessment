@@ -1,3 +1,5 @@
+import math
+
 def estimator(data):
     # initialize data holders
     impact = {}
@@ -22,7 +24,8 @@ def estimator(data):
     elif period_type == "months":
         num_of_days = time_frame / 30
 
-    factor = 2 ** (num_of_days // 3)
+    multiple_of_three = num_of_days / 3
+    factor = math.pow(2, multiple_of_three)
 
     impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * factor
     severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * factor
