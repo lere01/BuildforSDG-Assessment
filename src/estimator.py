@@ -75,7 +75,7 @@ def estimator(data):
 
     impact['dollarsInFlight'] = ((
         impact['infectionsByRequestedTime']) * ave_income * time_frame)
-    severeImpact['dollarsInFlight'] = math.ceil((
+    severeImpact['dollarsInFlight'] = ((
         severeImpact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * time_frame)
     ##########################################################################################
 
