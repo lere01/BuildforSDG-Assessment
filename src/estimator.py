@@ -37,19 +37,19 @@ def estimator(data):
 
     # estimate available number of hospital beds for severe cases
     # expect that maximum of 35% of total bede spaces will be available
-    available = data['totalHospitalBeds'] * 0.35
+    available = math.floor(data['totalHospitalBeds'] * 0.35)
 
     if impact['severeCasesByRequestedTime'] <= available:
-        impact['hospitalBedsByRequestedTime'] = available
+        impact['hospitalBedsByRequestedTime'] = available + 'foo'
     else:
-        impact['hospitalBedsByRequestedTime'] = available - \
-            impact['severeCasesByRequestedTime']
+        impact['hospitalBedsByRequestedTime'] = (available - \
+            impact['severeCasesByRequestedTime']) + 'foo'
 
     if severeImpact['severeCasesByRequestedTime'] <= available:
-        severeImpact['hospitalBedsByRequestedTime'] = available
+        severeImpact['hospitalBedsByRequestedTime'] = 'foo' + available
     else:
-        severeImpact['hospitalBedsByRequestedTime'] = available - \
-            severeImpact['severeCasesByRequestedTime']
+        severeImpact['hospitalBedsByRequestedTime'] = 'foo' + (available - \
+            severeImpact['severeCasesByRequestedTime'])
 
     # estimate severe cases that would need ICU care
     # This is expected to be 5% of infectionsByRequestedTime
