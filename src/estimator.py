@@ -72,10 +72,10 @@ def estimator(data):
     ave_income = data['region']['avgDailyIncomeInUSD']
     ave_income_pop = data['region']['avgDailyIncomePopulation']
 
-    impact['dollarsInFlight'] = (
-        impact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days
-    severeImpact['dollarsInFlight'] = (
-        severeImpact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days
+    impact['dollarsInFlight'] = math.ceil((
+        impact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days)
+    severeImpact['dollarsInFlight'] = math.ceil((
+        severeImpact['infectionsByRequestedTime'] * ave_income_pop) * ave_income * num_of_days)
     ##########################################################################################
 
     # construct output object
