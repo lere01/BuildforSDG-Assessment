@@ -22,7 +22,7 @@ def estimator(data):
     elif period_type == "months":
         num_of_days = time_frame / 30
 
-    factor = 2 ** (num_of_days / 3)
+    factor = 2 ** (num_of_days // 3)
 
     impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * factor
     severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * factor
