@@ -20,9 +20,9 @@ def estimator(data):
     if period_type == "days":
         num_of_days = time_frame
     elif period_type == "weeks":
-        num_of_days = time_frame / 7
+        num_of_days = time_frame * 7
     elif period_type == "months":
-        num_of_days = time_frame / 30.436875000000082
+        num_of_days = time_frame * 30
 
     multiple_of_three = num_of_days / 3
     factor = math.pow(2, multiple_of_three)
