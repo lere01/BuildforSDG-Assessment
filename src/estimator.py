@@ -30,15 +30,14 @@ def estimator(data):
 
     impact['infectionsByRequestedTime'] = impact['currentlyInfected'] * factor
     severeImpact['infectionsByRequestedTime'] = severeImpact['currentlyInfected'] * factor
-
-    # estimate number of severe positve cases
-    # assume that 15% of projected cases will be severe
-    impact['severeCasesByRequestedTime'] = impact['infectionsByRequestedTime'] * 0.15
-    severeImpact['severeCasesByRequestedTime'] = severeImpact['infectionsByRequestedTime'] * 0.15
     ##################################################################################################
 
-
     ############################    CHALLENGE TWO   ##############################################
+    # estimate number of severe positve cases
+    # assume that 15% of projected cases will be severe
+    impact['severeCasesByRequestedTime'] = math.ceil(impact['infectionsByRequestedTime'] * 0.15)
+    severeImpact['severeCasesByRequestedTime'] = math.ceil(severeImpact['infectionsByRequestedTime'] * 0.15)
+    
     # estimate available number of hospital beds for severe cases
     # expect that maximum of 35% of total bede spaces will be available
     available = math.ceil(data['totalHospitalBeds'] * 0.35)
