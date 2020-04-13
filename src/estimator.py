@@ -71,6 +71,7 @@ def estimator(data):
     # estimate economic impact to the region based on number infections by requested time
     ave_income = data['region']['avgDailyIncomeInUSD']
     ave_income_pop = data['region']['avgDailyIncomePopulation']
+    print(ave_income_pop)
 
     impact['dollarsInFlight'] = math.ceil((
         impact['infectionsByRequestedTime']) * ave_income * num_of_days)
